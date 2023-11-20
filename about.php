@@ -20,7 +20,6 @@
 
     //cities with bookings number
 
-
     $cities = $conn->query("SELECT cities.id AS id, 
     cities.name AS name, 
     cities.img AS image, 
@@ -48,7 +47,9 @@
     $num_bookings = $num_country->fetch(PDO::FETCH_OBJ);
 
   }
-
+  else{
+    header("location: 404.php");
+  }
 ?>
 
   <!-- ***** Main Banner Area Start ***** -->
@@ -84,7 +85,7 @@
                 <?php foreach($singleImage as $image) :?>
                   <div class="item">
                     <div class="thumb">
-                      <img src="assets/images/<?php echo $image->img; ?>" alt="">
+                      <img src="<?php echo CITIESIMAGES; ?>/<?php echo $image->img; ?>" alt="">
                       <h4><?php echo $image->name; ?></h4>
                     </div>
                   </div>
@@ -115,7 +116,7 @@
             <?php foreach($allCities as $city) : ?>
             <div class="item">
               <div class="thumb">
-                <img src="assets/images/<?php echo $city->image; ?>" alt="">
+                <img src="<?php echo CITIESIMAGES; ?>/<?php echo $city->image; ?>" alt="">
                 <div class="text">
                   <h4><?php echo $city->name; ?><br><span><i class="fa fa-users"></i><?php echo $city->count_bookings; ?> Check Ins</span></h4>
                   <h6>$<?php echo $city->price; ?><br><span>/person</span></h6>
@@ -126,9 +127,13 @@
                     <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
                     <li><i class="fa fa-building"></i> Daily Places Visit</li>
                   </ul>
+                  <?php if(isset($_SESSION['username'])) : ?>
                   <div class="main-button">
                     <a href="reservation.php?id=<?php echo $city->id; ?>">Make a Reservation</a>
                   </div>
+                  <?php else: ?>
+                    <p>Login to make reservation</p>
+                    <?php endif; ?>
                 </div>
               </div>
             </div>

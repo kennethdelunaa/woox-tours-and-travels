@@ -103,7 +103,7 @@
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="assets/images/<?php echo $country->image; ?>" alt="">
+                        <img src="<?php echo COUNTRIESIMAGES; ?>/<?php echo $country->image; ?>" alt="">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -111,7 +111,7 @@
                         <h4><?php echo $country->name; ?></h4>
                         <span><?php echo $country->continent; ?></span>
                         <div class="main-button">
-                          <a href="about.php?=<?php echo $country->id; ?>">Explore More</a>
+                          <a href="about.php?id=<?php echo $country->id; ?>">Explore More</a>
                         </div>
                         <p><?php echo $country->description; ?></p>
                         <ul class="info">
